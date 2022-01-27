@@ -1,4 +1,6 @@
-import {  FaDirections, FaCubes, FaSun, FaBookmark } from 'react-icons/fa';
+import {  FaDirections } from 'react-icons/fa';
+import { BsBookmark, BsGrid } from 'react-icons/bs'
+import { HiOutlineSun } from 'react-icons/hi'
 import SideBar from './SideBar'
 
 SideBar.defaultProps = {
@@ -11,17 +13,17 @@ SideBar.defaultProps = {
     {
       url: "#topics",
       text: "Topics",
-      icon: FaCubes
+      icon: BsGrid
     },
     {
       url: "#digest",
       text: "Digest",
-      icon: FaSun
+      icon: HiOutlineSun
     },
     {
       url: "#bookmarks",
       text: "Bookmarks",
-      icon: FaBookmark
+      icon: BsBookmark
     },
   ],
   bottomLinks: [

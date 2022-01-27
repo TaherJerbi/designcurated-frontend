@@ -9,7 +9,7 @@ import {
   Text,
   InputRightElement
 } from "@chakra-ui/react"
-import { BsFilter } from 'react-icons/bs';
+import { GiSettingsKnobs } from 'react-icons/gi'
 
 function SearchBar({value, onChange, onFilterClick, onSlashClick}){
   return (
@@ -18,7 +18,7 @@ function SearchBar({value, onChange, onFilterClick, onSlashClick}){
         <InputLeftElement p={1} w='5rem'>
           <Button onClick={onFilterClick} borderRadius={3} boxShadow='sm' bgColor='white' size='sm'>
             <HStack>
-              <Icon as={BsFilter}/>
+              <Icon as={GiSettingsKnobs}/>
               <Text>Filter</Text>
             </HStack>
           </Button>

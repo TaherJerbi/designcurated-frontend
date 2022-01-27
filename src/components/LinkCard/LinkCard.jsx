@@ -5,10 +5,10 @@ function LinkCard({text, url, icon : LinkIcon, selected}){
   const showText = useBreakpointValue({base: false, md: true})
   return (
     <NextLink href={url}>
-      <Button w="full" bgColor={!selected && "inherit"} color="gray.500" borderRadius="1" justifyContent={['center','flex-start']}>
+      <Button w="full" bgColor={!selected && "inherit"} color="gray.600" borderRadius="1" justifyContent={['center','flex-start']}>
         <HStack spacing={2}>
           {LinkIcon && <Icon data-testid={`link-card-icon_${text}_${url}`} as={LinkIcon}/> }
-          {showText && <Text>{text}</Text>}
+          {showText && <Text fontWeight={selected ? 'bold' : "normal"}>{text}</Text>}
         </HStack>
       </Button>
     </NextLink>
