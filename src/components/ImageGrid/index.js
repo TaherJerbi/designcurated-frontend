@@ -35,7 +35,7 @@ query SEARCH($key: String!, $page: Int!, $perPage: Int!, $orientation: String!) 
 
   }
 }`
-function ImageGridContainer({ page = 1, search }){
+function ImageGridContainer({ search, orientation, page_number : page }){
   const { data : noSearchData, loading : noSearchLoading } = useQuery(PHOTOS_QUERY,{
     variables: {
       page,
@@ -46,7 +46,7 @@ function ImageGridContainer({ page = 1, search }){
     variables: {
       page,
       perPage: 9,
-      orientation: 'landscape',
+      orientation,
       key: search
     }
   })
@@ -54,7 +54,7 @@ function ImageGridContainer({ page = 1, search }){
   if(loading)
     return <Spinner />
   if(searchData?.searchPhotos?.results.length > 0){
-    return <ImageGrid photos={searchData.searchPhotos.results}/>
+    return (<ImageGrid photos={searchData.searchPhotos.results}/>)
   }
   if(noSearchLoading)
     return <Spinner/>
