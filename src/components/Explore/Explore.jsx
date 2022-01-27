@@ -1,21 +1,42 @@
 import { Container, VStack, Box } from "@chakra-ui/react";
-import { useState } from "react";
+import { useReducer, useState } from "react";
 import ClientOnly from "../ClientOnly";
 import SearchBar from "../SearchBar";
 import ImageGrid from "../ImageGrid";
 
+
+const reducer = (state,action)=> {
+  switch(action.type){
+  case 'field':{
+    return {
+      ...state,
+      [action.field]: action.value
+    }
+  }
+  default:{
+    return state;
+  } 
+  }
+}
+const initState = {
+  page_number : 1,
+  search: '',
+  orientation: 'landscape'
+}
 function Explore(){
-  const [internalSearch, setInternalSearch] = useState('')
-  const [search, setSearch] = useState(internalSearch)
-  const handleChange = (e)=>setInternalSearch(e.target.value)
-  const handleSlashClick = () => setSearch(internalSearch)
+  const [internalState,dispatch] = useReducer(reducer,initState);
+  const [state,setState] = useState(internalState)
+  
+  const handleSlashClick = () => setState(internalState)
   return (
     <Container py={5} h='100vh' w='full' maxWidth="container.lg">
       <VStack spacing={50}>
-        <SearchBar value={internalSearch} onChange={handleChange} onSlashClick={handleSlashClick}/>
+        <SearchBar state={internalState} dispatch={dispatch} onSlashClick={handleSlashClick}/>
         <Box w="full">
           <ClientOnly>
-            <ImageGrid search={search} />
+            <VStack>
+              <ImageGrid page_number={state.page_number} orientation={state.orientation} search={state.search} />
+            </VStack>
           </ClientOnly>
         </Box>
       </VStack>
