@@ -3,9 +3,9 @@ import SideBar from '../SideBar'
 
 function Layout({children}) {
   return (
-    <Flex columns={20} overflow="hidden"  w="full" h="full">
+    <Flex overflow="hidden"  w="full" h="full">
       <SideBar/>
-      <Box h="full" w="full" colSpan={[17,16]} overflowY="auto">
+      <Box h="full" w="full"  overflowY="auto">
         {children}
       </Box>
     </Flex>

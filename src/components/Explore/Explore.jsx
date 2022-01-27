@@ -1,4 +1,4 @@
-import { Container, VStack } from "@chakra-ui/react";
+import { Container, VStack, Box } from "@chakra-ui/react";
 import { useState } from "react";
 import ClientOnly from "../ClientOnly";
 import SearchBar from "../SearchBar";
@@ -11,11 +11,13 @@ function Explore(){
   const handleSlashClick = () => setSearch(internalSearch)
   return (
     <Container py={5} h='100vh' w='full' maxWidth="container.lg">
-      <VStack spacing={100}>
+      <VStack spacing={50}>
         <SearchBar value={internalSearch} onChange={handleChange} onSlashClick={handleSlashClick}/>
-        <ClientOnly>
-          <ImageGrid search={search} />
-        </ClientOnly>
+        <Box w="full">
+          <ClientOnly>
+            <ImageGrid search={search} />
+          </ClientOnly>
+        </Box>
       </VStack>
     </Container>
   )
