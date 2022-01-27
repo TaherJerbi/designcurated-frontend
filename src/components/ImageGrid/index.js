@@ -16,39 +16,47 @@ query PHOTOS($page: Int!, $perPage: Int!) {
     }
   }
 }`
-// const SEARCH_PHOTOS = gql`
-// query SEARCH($key: String!, $page: Int!, $perPage: Int!, $orientation: String!) {
-//   searchPhotos(key: $key, page: $page, perPage: $perPage, orientation: $orientation) {
-//     image {
-//       description
-//       alt_description
-//       url
-//       id
-//     }
-//     user {
-//       username
-//     }
-//   }
-// }`
-function ImageGridContainer(){
-
+const SEARCH_PHOTOS = gql`
+query SEARCH($key: String!, $page: Int!, $perPage: Int!, $orientation: String!) {
+  searchPhotos(key: $key, page: $page, perPage: $perPage, orientation: $orientation) {
+    image {
+      description
+      alt_description
+      url
+      id
+    }
+    user {
+      username
+    }
+  }
+}`
+function ImageGridContainer({ page = 1, search }){
   //   const [query, setQuery] = useState();
-  const { data, loading, error } = useQuery(PHOTOS_QUERY,{
+  const { data : noSearchData, loading : noSearchLoading, error : noSearchError } = useQuery(PHOTOS_QUERY,{
     variables: {
-      page: 1,
+      page,
       perPage: 9
     }
   })
-  if(loading && !data){
-    // show skeleton grid
-    return "loading ..."
+  const { data : searchData, loading, error } = useQuery(SEARCH_PHOTOS, {
+    variables: {
+      page,
+      perPage: 9,
+      orientation: 'landscape',
+      key: search
+    }
+  })
+
+  if(loading ||noSearchLoading)
+    return 'Loading ... '
+
+  if(searchData && searchData.searchPhotos.length > 0){
+    return <ImageGrid photos={searchData.searchPhotos}/>
   }
-  if(error && !data){
-    // show error message
-    return error
-  }
-  if(data)
-    return <ImageGrid photos={data.getPhotos}/>
+  if(noSearchData && noSearchData.getPhotos.length > 0)
+    return <ImageGrid photos={noSearchData.getPhotos}/>
+
+
 
 }
 export default ImageGridContainer

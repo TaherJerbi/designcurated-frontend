@@ -20,7 +20,7 @@ describe('ImageCard', () => {
 
   test('should render the image, username and description', () => {
     const { getByText, getByAltText } = render(<ImageCard {...expectedProps}/>)
-    const username = getByText(expectedProps.user.username)
+    const username = getByText(`@${expectedProps.user.username}`)
     const image = getByAltText(expectedProps.image.alt_description)
     const description = getByText(expectedProps.image.description)
     expect(username).toBeVisible()
