@@ -5,12 +5,14 @@ import SearchBar from "../SearchBar";
 import ImageGrid from "../ImageGrid";
 
 function Explore(){
-  const [search, setSearch] = useState('')
-  const handleChange = (e)=>setSearch(e.target.value)
+  const [internalSearch, setInternalSearch] = useState('')
+  const [search, setSearch] = useState(internalSearch)
+  const handleChange = (e)=>setInternalSearch(e.target.value)
+  const handleSlashClick = () => setSearch(internalSearch)
   return (
     <Container py={5} h='100vh' w='full' maxWidth="container.lg">
       <VStack spacing={100}>
-        <SearchBar value={search} onChange={handleChange}/>
+        <SearchBar value={internalSearch} onChange={handleChange} onSlashClick={handleSlashClick}/>
         <ClientOnly>
           <ImageGrid search={search} />
         </ClientOnly>

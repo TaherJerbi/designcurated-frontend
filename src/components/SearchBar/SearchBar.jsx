@@ -24,6 +24,11 @@ function SearchBar({value, onChange, onFilterClick, onSlashClick}){
           </Button>
         </InputLeftElement>
         <Input 
+          onKeyPress={e=> {
+            if (e.key === 'Enter') {
+              onSlashClick(e);
+            }
+          }}
           variant='filled' 
           onChange={onChange}
           value={value}
