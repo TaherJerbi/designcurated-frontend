@@ -10,12 +10,12 @@ function SideBar({ topLinks, bottomLinks }){
   return (
     <VStack h="100vh" w={width} direction="column" bgColor="gray.50" justifyContent="space-between" alignItems="center" py={5} px={5}>
       <VStack w="full" alignItems={alignItems}>
-        {topLinks?.map(link => <LinkCard {...link} showText={showText}/>)}
+        {topLinks?.map(link => <LinkCard key={`${link.url+link.text}topLink`} {...link}/>)}
       </VStack>
       <VStack w="full" alignItems={alignItems}>
         {showText && 
           <VStack  alignItems='flex-start'>
-            {bottomLinks?.map(link => <Link key={`link${link.url}${link.text}`} href={link.url} as={NextLink}>{link.text}</Link>)}
+            {bottomLinks?.map(link => <Link key={`${link.url}${link.text}bottomLink`} href={link.url} as={NextLink}>{link.text}</Link>)}
           </VStack>}
 
         {showText && <HStack pt={4} justifyContent="space-between" w="full" alignItems="center">
