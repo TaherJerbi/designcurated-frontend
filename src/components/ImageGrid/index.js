@@ -36,7 +36,6 @@ query SEARCH($key: String!, $page: Int!, $perPage: Int!, $orientation: String!) 
   }
 }`
 function ImageGridContainer({ page = 1, search }){
-  //   const [query, setQuery] = useState();
   const { data : noSearchData, loading : noSearchLoading } = useQuery(PHOTOS_QUERY,{
     variables: {
       page,
