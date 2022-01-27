@@ -36,30 +36,32 @@ query SEARCH($key: String!, $page: Int!, $perPage: Int!, $orientation: String!) 
   }
 }`
 function ImageGridContainer({ search, orientation, page_number : page }){
-  const { data : noSearchData, loading : noSearchLoading } = useQuery(PHOTOS_QUERY,{
-    variables: {
-      page,
-      perPage: 9
-    }
-  })
-  const { data : searchData, loading } = useQuery(SEARCH_PHOTOS, {
-    variables: {
-      page,
-      perPage: 9,
-      orientation,
-      key: search
-    }
-  })
-
-  if(loading)
+  const { data , loading } = useQuery(
+    search ? SEARCH_PHOTOS : PHOTOS_QUERY,{
+      variables: {
+        page,
+        perPage: 9,
+        orientation: search && orientation,
+        key : search
+      }
+    })
+  // const { data : searchData, loading } = useQuery(SEARCH_PHOTOS, {
+  //   variables: {
+  //     page,
+  //     perPage: 9,
+  //     orientation,
+  //     key: search
+  //   }
+  // })
+  if(loading){
     return <Spinner />
-  if(searchData?.searchPhotos?.results.length > 0){
-    return (<ImageGrid photos={searchData.searchPhotos.results}/>)
   }
-  if(noSearchLoading)
-    return <Spinner/>
-  if(noSearchData && noSearchData.getPhotos.length > 0)
-    return <ImageGrid photos={noSearchData.getPhotos}/>
+  if(data?.searchPhotos?.results?.length > 0){
+    return <ImageGrid photos={data.searchPhotos.results}/>
+  }
+  if(data?.getPhotos?.length > 0){
+    return <ImageGrid photos={data.getPhotos}/>
+  }
   return null
 }
 export default ImageGridContainer
