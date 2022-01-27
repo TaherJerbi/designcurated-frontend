@@ -60,5 +60,6 @@ function ImageGridContainer({ page = 1, search }){
     return <Spinner/>
   if(noSearchData && noSearchData.getPhotos.length > 0)
     return <ImageGrid photos={noSearchData.getPhotos}/>
+  return null
 }
 export default ImageGridContainer
