@@ -1,4 +1,5 @@
 /* eslint-disable no-undef */
+import '../../utils/matchMedia.mock';
 import React from "react";
 import { render } from "../../utils/test-utils";
 import ImageCard from "./ImageCard";
