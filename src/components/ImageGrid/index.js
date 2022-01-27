@@ -19,15 +19,20 @@ query PHOTOS($page: Int!, $perPage: Int!) {
 const SEARCH_PHOTOS = gql`
 query SEARCH($key: String!, $page: Int!, $perPage: Int!, $orientation: String!) {
   searchPhotos(key: $key, page: $page, perPage: $perPage, orientation: $orientation) {
-    image {
-      description
-      alt_description
-      url
-      id
+    
+    results {
+      image {
+        description
+        url
+        id
+      }
+      user {
+        username
+      }
     }
-    user {
-      username
-    }
+    total
+    total_pages
+
   }
 }`
 function ImageGridContainer({ page = 1, search }){
@@ -47,11 +52,11 @@ function ImageGridContainer({ page = 1, search }){
     }
   })
 
-  if(loading ||noSearchLoading)
+  if(loading ||noSearchLoading)
     return 'Loading ... '
 
-  if(searchData && searchData.searchPhotos.length > 0){
-    return <ImageGrid photos={searchData.searchPhotos}/>
+  if(searchData?.searchPhotos?.results.length > 0){
+    return <ImageGrid photos={searchData.searchPhotos.results}/>
   }
   if(noSearchData && noSearchData.getPhotos.length > 0)
     return <ImageGrid photos={noSearchData.getPhotos}/>

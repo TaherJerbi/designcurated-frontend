@@ -4,7 +4,7 @@ import { FaTwitter } from 'react-icons/fa';
 import LinkCard from "../LinkCard"
 
 function SideBar({ topLinks, bottomLinks }){
-  const width = useBreakpointValue({base: '50px', md:'25%'})
+  const width = useBreakpointValue({base: '50px', md:'250px'})
   const showText = useBreakpointValue({base: false, md:true})
   const alignItems = useBreakpointValue({base:'center', md:'flex-start'})
   return (
