@@ -1,8 +1,9 @@
+Next.js app with a GraphQL backend that allows you to search images from the Unsplash API. 
+Live demo ✨ https://designcurated-frontend.vercel.app ✨
+
 # Purpose Of The Project
 
 This was an initial trial for an Upwork client that allowed me to demonstrate my skills as a React and Node.js developer. It also allowed me to get familiar with the tech stack the client needed.
-
-Live demo ✨ https://designcurated-frontend.vercel.app ✨
 
 Backend repo : https://github.com/TaherJerbi/designcurated-server
 
