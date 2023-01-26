@@ -2,6 +2,8 @@
 
 This was an initial trial for an Upwork client that allowed me to demonstrate my skills as a React and Node.js developer. It also allowed me to get familiar with the tech stack the client needed.
 
+Live demo ✨ https://designcurated-frontend.vercel.app ✨
+
 Backend repo : https://github.com/TaherJerbi/designcurated-server
 
 # What I Learned
