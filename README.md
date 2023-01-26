@@ -1,4 +1,5 @@
 Next.js app with a GraphQL backend that allows you to search images from the Unsplash API. 
+
 Live demo ✨ https://designcurated-frontend.vercel.app ✨
 
 # Purpose Of The Project
